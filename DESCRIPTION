@@ -1,0 +1,11 @@
+Package: rrabbitmq
+Title: R Client for RabbitMQ
+Version: 0.1.0
+Maintainer: Evan Lemke
+Author: Evan Lemke
+Description: A RabbitMQ client based on SimpleAmqpClient <https://github.com/alanxz/SimpleAmqpClient>.
+License: GPL-3
+Depends: R (>= 3.1.0)
+SystemRequirements: RabbitMQ, Boost, SimpleAmqpClient
+URL: http://github.com/TragonRedJade/rrabbitmq
+BugReports: http://github.com/TragonRedJade/rrabbitmq/issues
