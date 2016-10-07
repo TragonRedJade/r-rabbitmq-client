@@ -1,6 +1,5 @@
 //
 //  RRabbitMQ.hpp
-//  RabbitTest
 //
 //  Created by Evan Lemke on 9/19/16.
 //  Copyright © 2016 Evan Lemke. All rights reserved.
@@ -10,6 +9,7 @@
 #define RRabbitMQ_hpp
 
 #include <stdio.h>
+#include <string>
 #include <SimpleAmqpClient/SimpleAmqpClient.h>
 
 class RRabbitMQ{
@@ -19,7 +19,7 @@ private:
 
 public:
     bool Connect(std::string host);
-    bool Publish(std::string quueu, std::string message);
+    bool Publish(std::string queue, std::string message);
     bool Subscribe(std::string queue);
     std::string Consume();
 };
