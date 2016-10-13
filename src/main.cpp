@@ -17,15 +17,15 @@ int main(int argc, const char * argv[]) {
     cout << "Hello, World!\n";
 
     RRabbitMQ client;
-    client.Connect("localhost");
+    client.Connect("rabbitmq");
 
     cout << "connected \n";
 
-    client.Publish("calcsQueue", "poop");
-    client.Publish("calcsQueue", "stuff");
+    client.Publish("calcs_queue", "poop");
+    client.Publish("calcs_queue", "stuff");
 
     string message;
-    client.Subscribe("calcsQueue");
+    client.Subscribe("calcs_queue");
     message = client.Consume();
 
     cout << "Message: " << message << "\n";
