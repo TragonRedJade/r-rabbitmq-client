@@ -1,5 +1,6 @@
 ## -*- mode: makefile; -*-
 
 CXX_STD = CXX11
-PKG_CPPFLAGS = -I../src
-PKG_LIBS = -lSimpleAmqpClient -lc++ -lR
+CXX=clang++
+PKG_CPPFLAGS = -I/usr/local/lib/ -I/usr/local/lib/R/site-library/Rcpp/include/ -I/usr/share/R/include/
+PKG_LIBS = -lSimpleAmqpClient
