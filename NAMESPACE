@@ -1,3 +1,3 @@
-useDynLib(SimpleAmqpClient)
-
-export()
+useDynLib(RabbitClient)
+exportPattern("^[[:alpha:]]+")
+import(Rcpp)

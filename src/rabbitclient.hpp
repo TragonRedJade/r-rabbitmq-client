@@ -12,15 +12,18 @@
 #include <string>
 #include <SimpleAmqpClient/SimpleAmqpClient.h>
 
-class RRabbitMQ{
+class RabbitClient{
 private:
     AmqpClient::Channel::ptr_t Channel;
     std::string ConsumerTag;
 
 public:
-    bool Connect(std::string host);
-    bool Publish(std::string queue, std::string message);
-    bool Subscribe(std::string queue);
+    std::string DefaultExchange;
+
+    bool Connect(std::string host, int port, std::string username, std::string password);
+    bool DeclareQueue(std::string queue_name, bool passive, bool durable, bool exclusive, bool auto_delete);
+    bool Publish(std::string queue_name, std::string message);
+    bool Subscribe(std::string queue_name);
     std::string Consume();
 };
 

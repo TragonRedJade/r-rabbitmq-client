@@ -6,7 +6,7 @@
 //  Copyright © 2016 Evan Lemke. All rights reserved.
 //
 
-#include "rrabbitmq.hpp"
+#include "rabbitclient.hpp"
 #include <iostream>
 #include <SimpleAmqpClient/SimpleAmqpClient.h>
 
@@ -16,8 +16,8 @@ int main(int argc, const char * argv[]) {
 
     cout << "Hello, World!\n";
 
-    RRabbitMQ client;
-    client.Connect("localhost");
+    RabbitClient client;
+    client.Connect("rabbitmq");
 
     cout << "connected \n";
 
