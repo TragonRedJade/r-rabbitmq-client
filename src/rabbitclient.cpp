@@ -29,7 +29,7 @@ bool RabbitClient::Publish(string queue_name, string value)
 
 bool RabbitClient::Subscribe(string queue_name)
 {
-    ConsumerTag = Channel->BasicConsume(queue_name, "", true, false);
+    ConsumerTag = Channel->BasicConsume(queue_name, "", false, true);
     return true;
 }
 
@@ -41,11 +41,11 @@ RabbitMessage RabbitClient::Consume()
     message.Body = envelope->Message()->Body();
     message.RoutingKey = envelope->RoutingKey();
     Table headers = envelope->Message()->HeaderTable();
-    
+
     for (auto& row : headers) {
       message.Headers[row.first] = row.second.GetString();
     }
 
-    Channel->BasicAck(envelope);
+    // Channel->BasicAck(envelope);
     return message;
 }
