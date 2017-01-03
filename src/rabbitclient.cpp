@@ -37,13 +37,15 @@ RabbitMessage RabbitClient::Consume()
 {
     Envelope::ptr_t envelope = Channel->BasicConsumeMessage(ConsumerTag);
     RabbitMessage message;
+
     message.Body = envelope->Message()->Body();
+    message.RoutingKey = envelope->RoutingKey();
     Table headers = envelope->Message()->HeaderTable();
-    //headers.size()
-    for(int x=0; x<headers.size(); x++)
-    {    
-        message.Headers["evan"] = "mooo";
+    
+    for (auto& row : headers) {
+      message.Headers[row.first] = row.second.GetString();
     }
+
     Channel->BasicAck(envelope);
     return message;
 }

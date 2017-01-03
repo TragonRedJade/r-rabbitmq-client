@@ -14,6 +14,7 @@ private:
 public:
     std::string Body;
     Rcpp::List Headers;
+    std::string RoutingKey;
     // Rcpp::traits::named_object<std::string> Evan;
     // std::map< Testing;
     // std::map<std::string, std::string> Testing;

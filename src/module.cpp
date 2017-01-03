@@ -16,7 +16,7 @@ RCPP_MODULE(RabbitClient) {
 
     .field( "Body", &RabbitMessage::Body)
     .field( "Headers", &RabbitMessage::Headers)
-    // .field( "Evan", &RabbitMessage::Evan)
+    .field( "RoutingKey", &RabbitMessage::RoutingKey)
 
     ;
   class_<RabbitClient>( "RabbitClient" )

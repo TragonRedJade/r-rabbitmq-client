@@ -1,7 +1,7 @@
 client = new(RabbitClient)
 
 message="mooo"
-queue_name="awee"
+queue_name="rabbit_client_tests"
 
 ###########################
 # SETUP
@@ -28,6 +28,7 @@ expect_that(client$Publish(queue_name, message), equals(TRUE))
 expect_that(client$Subscribe(queue_name),equals(TRUE))
 response = client$Consume()
 expect_that(response$Body,equals(message))
+expect_that(response$RoutingKey, equals(queue_name))
 expect_that(length(response$Headers),equals(0))
 
 
