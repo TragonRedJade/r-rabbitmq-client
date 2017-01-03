@@ -1,7 +1,7 @@
 client = new(RabbitClient)
 
 message="mooo"
-queue_name="calcs_queue"
+queue_name="awee"
 
 ###########################
 # SETUP
@@ -23,8 +23,12 @@ expect_error(client$Consume(), ".*")
 ############################
 #Test for success
 ############################
-expect_that(client$DeclareQueue(queue_name, TRUE, FALSE, TRUE, TRUE), equals(TRUE))
+expect_that(client$DeclareQueue(queue_name, FALSE, FALSE, FALSE, TRUE), equals(TRUE))
 expect_that(client$Publish(queue_name, message), equals(TRUE))
 expect_that(client$Subscribe(queue_name),equals(TRUE))
-expect_that(client$Consume(), equals(message))
+response = client$Consume()
+expect_that(response$Body,equals(message))
+expect_that(length(response$Headers),equals(0))
+
+
 #tasdf thies dfasdf

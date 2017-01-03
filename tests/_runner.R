@@ -5,6 +5,6 @@ library('Rcpp')
 library('methods')
 library('utils')
 
-load_all("/r-rabbitmq")
+load_all("/app")
 
 test_dir('tests', reporter = 'Summary')

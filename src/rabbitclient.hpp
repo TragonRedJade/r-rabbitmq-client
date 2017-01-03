@@ -8,14 +8,18 @@
 #ifndef RRabbitMQ_hpp
 #define RRabbitMQ_hpp
 
+#include "rabbitmessage.hpp"
+
 #include <stdio.h>
 #include <string>
 #include <SimpleAmqpClient/SimpleAmqpClient.h>
+#include <Rcpp.h>
 
 class RabbitClient{
 private:
     AmqpClient::Channel::ptr_t Channel;
     std::string ConsumerTag;
+    AmqpClient::BasicMessage::ptr_t LastMessageConsumed;
 
 public:
     std::string DefaultExchange;
@@ -24,7 +28,7 @@ public:
     bool DeclareQueue(std::string queue_name, bool passive, bool durable, bool exclusive, bool auto_delete);
     bool Publish(std::string queue_name, std::string message);
     bool Subscribe(std::string queue_name);
-    std::string Consume();
+    RabbitMessage Consume();
 };
 
 #endif /* IRRabbitMQ_hpp */

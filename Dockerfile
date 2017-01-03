@@ -20,9 +20,12 @@ ENV LD_LIBRARY_PATH /usr/local/lib/
 
 # install the R dependancies
 RUN R -e "install.packages('Rcpp', repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('testthat', repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('roxygen2', repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('devtools', repos='http://cran.rstudio.com/')"
 
 # copy the code
 RUN mkdir /app
 WORKDIR /app
 COPY . ./
+CMD ["tail", "-f", "/dev/null"]

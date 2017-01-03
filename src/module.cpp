@@ -1,21 +1,24 @@
 #include "rabbitclient.hpp"
+#include "rabbitmessage.hpp"
+
 #include <SimpleAmqpClient/SimpleAmqpClient.h>
 #include <Rcpp.h>
 #include <R.h>
 
 using namespace Rcpp;
 
-double add( double x, double y ) {
-  return x+y;
-}
-RCPP_MODULE(Evan) {
-function( "add", &add,
-List::create( _["x"], _["y"] = 4.0 ),
-"Provides a simple vector norm"
-);
-}
+
+RCPP_EXPOSED_CLASS(RabbitMessage)
 
 RCPP_MODULE(RabbitClient) {
+  class_<RabbitMessage>( "RabbitMessage" )
+    .constructor()
+
+    .field( "Body", &RabbitMessage::Body)
+    .field( "Headers", &RabbitMessage::Headers)
+    // .field( "Evan", &RabbitMessage::Evan)
+
+    ;
   class_<RabbitClient>( "RabbitClient" )
     .constructor()
 
