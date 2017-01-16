@@ -28,6 +28,7 @@ public:
     bool DeclareQueue(std::string queue_name, bool passive, bool durable, bool exclusive, bool auto_delete);
     bool Publish(std::string queue_name, std::string message);
     bool Subscribe(std::string queue_name);
+    bool IsChannelOpen();
     RabbitMessage Consume();
 };
 

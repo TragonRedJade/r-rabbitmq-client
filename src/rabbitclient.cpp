@@ -29,8 +29,13 @@ bool RabbitClient::Publish(string queue_name, string value)
 
 bool RabbitClient::Subscribe(string queue_name)
 {
-    ConsumerTag = Channel->BasicConsume(queue_name, "", false, true);
+    ConsumerTag = Channel->BasicConsume(queue_name, "", false, true, false, 1);
     return true;
+}
+
+bool RabbitClient::IsChannelOpen()
+{
+  return true;//Detail::ChannelImpl::IsChannelOpen(Channel);
 }
 
 RabbitMessage RabbitClient::Consume()

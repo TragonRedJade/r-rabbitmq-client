@@ -32,5 +32,7 @@ RCPP_MODULE(RabbitClient) {
       // ,List::create(_["queue_name"] = "poop")
     .method( "Publish", &RabbitClient::Publish )
     .method( "Consume", &RabbitClient::Consume )
+    .method( "IsChannelOpen", &RabbitClient::IsChannelOpen )
+
     ;
 }

@@ -10,7 +10,6 @@ expect_that(client$DefaultExchange, equals(""))
 expect_that(client$Connect("rabbitmq",5672,"guest","guest"), equals(TRUE))
 
 
-
 ############################
 #Test for failure handling
 ############################
@@ -25,7 +24,9 @@ expect_error(client$Consume(), ".*")
 ############################
 expect_that(client$DeclareQueue(queue_name, FALSE, FALSE, FALSE, TRUE), equals(TRUE))
 expect_that(client$Publish(queue_name, message), equals(TRUE))
+expect_that(client$IsChannelOpen(), equals(TRUE))
 expect_that(client$Subscribe(queue_name),equals(TRUE))
+
 response = client$Consume()
 expect_that(response$Body,equals(message))
 expect_that(response$RoutingKey, equals(queue_name))
