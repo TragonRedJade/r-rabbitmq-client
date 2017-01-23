@@ -1,8 +1,8 @@
-FROM r-base
+FROM r-base:3.3.1
 
 # install all the dependancies for SimpleAmqpClient
 RUN apt-get update \
-  && apt-get install -y git-core libcurl4-openssl-dev libssl-dev libboost-all-dev librabbitmq-dev cmake clang \
+  && apt-get install -y git-core libcurl4-openssl-dev libssl-dev libboost-all-dev librabbitmq-dev cmake clang ntp \
   && rm -rf /var/lib/apt/lists/*
 
 
