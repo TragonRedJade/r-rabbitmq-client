@@ -23,6 +23,7 @@ RCPP_MODULE(RabbitClient) {
     .constructor()
 
     .field( "DefaultExchange", &RabbitClient::DefaultExchange)
+    .field( "TimeOut", &RabbitClient::TimeOut)
 
     .method( "Connect", &RabbitClient::Connect)
        //,List::create( _["host"]="localhost", _["port"] = 5672, _["username"] = "guest", _["password"] = "guest", _["vhost"] = "/", _["frame_max"] = 131072)

@@ -23,10 +23,11 @@ private:
 
 public:
     std::string DefaultExchange;
+    int TimeOut;
 
     bool Connect(std::string host, int port, std::string username, std::string password);
     bool DeclareQueue(std::string queue_name, bool passive, bool durable, bool exclusive, bool auto_delete);
-    bool Publish(std::string queue_name, std::string message);
+    bool Publish(std::string exchange_name, std::string routing_key, std::string message);
     bool Subscribe(std::string queue_name);
     bool IsChannelOpen();
     RabbitMessage Consume();

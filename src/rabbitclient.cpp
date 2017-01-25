@@ -20,10 +20,10 @@ bool RabbitClient::DeclareQueue(string queue_name, bool passive=false, bool dura
 }
 
 
-bool RabbitClient::Publish(string queue_name, string value)
+bool RabbitClient::Publish(string exchange_name, string routing_key, string value)
 {
     BasicMessage::ptr_t message = BasicMessage::Create(value);
-    Channel->BasicPublish(DefaultExchange, queue_name, message, true);
+    Channel->BasicPublish(exchange_name, routing_key, message, true, false);
     return true;
 }
 
@@ -48,7 +48,7 @@ RabbitMessage RabbitClient::Consume()
     Table headers = envelope->Message()->HeaderTable();
 
     for (auto& row : headers) {
-      message.Headers[row.first] = row.second.GetString();
+        message.Headers[row.first] = row.second.GetString();
     }
 
     // Channel->BasicAck(envelope);
