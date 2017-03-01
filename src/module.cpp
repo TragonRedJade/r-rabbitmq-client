@@ -18,22 +18,32 @@ RCPP_MODULE(RabbitClient) {
     .field( "Headers", &RabbitMessage::Headers)
     .field( "RoutingKey", &RabbitMessage::RoutingKey)
 
+    .method( "BasicAck", &RabbitMessage::BasicAck)
+    .method( "BasicReject", &RabbitMessage::BasicReject)
+
     ;
   class_<RabbitClient>( "RabbitClient" )
     .constructor()
 
-    .field( "DefaultExchange", &RabbitClient::DefaultExchange)
-    .field( "TimeOut", &RabbitClient::TimeOut)
-
     .method( "Connect", &RabbitClient::Connect)
-       //,List::create( _["host"]="localhost", _["port"] = 5672, _["username"] = "guest", _["password"] = "guest", _["vhost"] = "/", _["frame_max"] = 131072)
-    .method( "DeclareQueue", &RabbitClient::DeclareQueue)
-      // ,List::create( _["queue_name"], _["passive"] = false, _["durable"] = false, _["exclusive"] = true, _["auto_delete"] = true))
+    .method( "IsOpen", &RabbitClient::IsOpen )
     .method( "Subscribe", &RabbitClient::Subscribe)
-      // ,List::create(_["queue_name"] = "poop")
+    .method( "Unsubscribe", &RabbitClient::Unsubscribe)
+
+
+    .method( "DeclareExchange", &RabbitClient::DeclareExchange)
+    .method( "DeleteExchange", &RabbitClient::DeleteExchange)
+    .method( "BindExchange", &RabbitClient::BindExchange)
+    .method( "UnbindExchange", &RabbitClient::UnbindExchange)
+
+    .method( "DeclareQueue", &RabbitClient::DeclareQueue)
+    .method( "DeleteQueue", &RabbitClient::DeleteQueue)
+    .method( "BindQueue", &RabbitClient::BindQueue)
+    .method( "UnbindQueue", &RabbitClient::UnbindQueue)
+    .method( "PurgeQueue", &RabbitClient::PurgeQueue)
+
     .method( "Publish", &RabbitClient::Publish )
     .method( "Consume", &RabbitClient::Consume )
-    .method( "IsChannelOpen", &RabbitClient::IsChannelOpen )
 
     ;
 }

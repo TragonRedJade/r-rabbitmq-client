@@ -1,6 +1,6 @@
 
-#ifndef RRabbitMessage_hpp
-#define RRabbitMessage_hpp
+#ifndef RabbitMessage_hpp
+#define RabbitMessage_hpp
 
 #include <stdio.h>
 #include <string>
@@ -10,22 +10,21 @@
 
 class RabbitMessage{
 private:
+    AmqpClient::Envelope::ptr_t SourceMessage;
+    AmqpClient::Channel::ptr_t Channel;
 
 public:
+    RabbitMessage();
+    RabbitMessage(AmqpClient::Channel::ptr_t channel, AmqpClient::Envelope::ptr_t source_message);
+
     std::string Body;
     Rcpp::List Headers;
     std::string RoutingKey;
-    // Rcpp::traits::named_object<std::string> Evan;
-    // std::map< Testing;
-    // std::map<std::string, std::string> Testing;
+
+    bool BasicAck();
+    bool BasicReject(bool requeue, bool multiple);
 
 };
 
-// template <> SEXP wrap(const BassicMessage &obj) { // insprired from "make_new_object" from Rcpp/Module.h
-//   Rcpp::XPtr<A> xp( new BassicMessage(obj), true ) ; // copy and mark as finalizable
-//   Function maker=Environment::Rcpp_namespace()[ "cpp_object_maker"];
-//   return maker ( typeid(BassicMessage).name() , xp );
-// }
-//
 
-#endif /* IRRabbitMQ_hpp */
+#endif
